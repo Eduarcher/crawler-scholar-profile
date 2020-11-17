@@ -32,7 +32,7 @@ class ExampleSpider(scrapy.Spider):
     allowed_domains = ['api.scraperapi.com']
 
     def start_requests(self):
-        queries = ['twRpocQAAAAJ'] # , 'twRpocQAAAAJ', 'NVdPYsQAAAAJ, z8m6hYEAAAAJ'
+        queries = ['twRpocQAAAAJ', 'NVdPYsQAAAAJ, z8m6hYEAAAAJ']
         for query in queries:
             url = 'https://scholar.google.com/citations?' +\
                   urlencode({'hl': 'pt-BR', 'user': query, 'pagesize': 8000,
