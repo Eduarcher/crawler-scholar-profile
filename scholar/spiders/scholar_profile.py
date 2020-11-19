@@ -16,7 +16,7 @@ def get_attr_list(selector, path):
     for element in selector.xpath(path):
         for index, attribute in enumerate(element.xpath('@*'), start=1):
             attribute_name = element.xpath('name(@*[%d])' % index).extract_first()
-            # attributes.append((attribute_name, attribute.extract()))
+            # attributes.append((attribute_name, attribute.extract())
             attributes.append(attribute_name)
     return attributes
 
@@ -42,8 +42,9 @@ class ExampleSpider(scrapy.Spider):
                                  meta={'position': 0, "user": query})
 
     def parse(self, response):
-        global url_paper
-        print(f"\n{response.url}\n")
+        if "ServiceLogin" in response.url:
+            return None
+        print(f"   \n{response.url}\n")
         position = response.meta['position']
         user = response.meta['user']
         for res in response.xpath('/html/body/div/div[13]/div[2]/div/div[4]/form/div[1]/table/tbody/tr'):
